@@ -1,0 +1,17 @@
+[Unit]
+Description = forever service
+After = network.target
+
+[Service]
+Type = forking
+ExecStart = /home/vagrant/.anyenv/envs/nodenv/versions/8.11.3/bin/forever start /home/vagrant/project/src/test.js
+ExecStop = /home/vagrant/.anyenv/envs/nodenv/versions/8.11.3/bin/forever stop /home/vagrant/project/src/test.js
+ExecReload = /home/vagrant/.anyenv/envs/nodenv/versions/8.11.3/bin/forever restart /home/vagrant/project/src/test.js
+Restart = always
+RestartSec = 10
+StandardOutput = syslog
+StandardError = syslog
+SyslogIdentifier = forever-node
+
+[Install]
+WantedBy = multi-user.target
